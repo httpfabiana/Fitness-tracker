@@ -1,0 +1,68 @@
+import { ActivityIcon, HomeIcon, MoonIcon, PersonStandingIcon, SunIcon, UserIcon, UtensilsIcon } from "lucide-react";
+
+import { NavLink } from "react-router-dom";
+import { useAppContext } from "../../context/AppContext/useApp";
+import Button from "../ui/Button";
+import { LogOutIcon } from "lucide-react";
+
+
+export default function Sidebar() {
+
+   const navItems = [
+    {
+      path: '/',
+      label: 'Home',
+      icon: HomeIcon
+    },
+    {
+      path: '/food',
+      label: 'Food',
+      icon: UtensilsIcon
+    },
+    {
+      path: '/activity',
+      label: 'Activity',
+      icon: ActivityIcon
+    },
+    {
+      path: '/profile',
+      label: 'Profile',
+      icon: UserIcon
+    }
+   ]
+
+   const {logout} = useAppContext()
+
+ return (
+   <nav className="hidden lg:flex flex-col w-60 bg-white dark:bg-slate-900 border-r border-slate-100
+    dark:border-slate-800 p-6 transition-colors duration-200"
+    >
+    <div className="flex gap-3">
+     <div className="size-10 rounded-xl bg-emerald-500 flex items-center justify-center">
+      <PersonStandingIcon className="size-7 text-white"/>  
+     </div>
+     <h1 className="text-2xl font-bold text-slate-800 mt-1 dark:text-white">FitTrack</h1>
+    </div>
+
+    <div className="flex flex-col gap-2">
+     {navItems.map((item) => (
+      <NavLink key={item.path} to={item.path} className={({ isActive }) => `flex items-center gap-3 
+       px-4 py-2.5 transition-all duration-200 
+        ${isActive ? 'bg-emerald-50 dark:bg-emerald-900/10 text-emerald-600 dark:text-emerald-400 font-medium' 
+         : 
+        'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200 border-transparent'}`}>
+        <item.icon className="size-5"/>
+        <span className="text-base">{item.label}</span>
+      </NavLink>
+     ))}
+    </div>
+
+      <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+        <Button onClick={logout} className="w-full ring bg-red-500 ring-red-500 hover:ring-2">
+         <LogOutIcon className="size-4"/>
+          Logout
+     </Button>
+      </div>
+   </nav>
+ );
+}
