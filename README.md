@@ -9,8 +9,8 @@ O sistema permite registrar refeições, monitorar calorias consumidas e queimad
 ### 🔐 Autenticação
 
 <p align="center">
-  <img src="![Logo](./src/assets/login.png)" width="45%" />
-  <img src="![Logo](./src/assets/onboarding.png)" width="45%" />
+  <img src="./screenshots/login.png" width="45%" />
+  <img src="./screenshots/onboarding.png" width="45%" />
 </p>
 
 ### 👤 Onboarding e Dashboard
