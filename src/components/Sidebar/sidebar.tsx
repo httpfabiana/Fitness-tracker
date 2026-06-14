@@ -58,7 +58,7 @@ export default function Sidebar() {
     </div>
 
       <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
-        <Button onClick={logout} className="w-full ring bg-red-500 ring-red-500 hover:ring-2">
+        <Button onClick={logout} className="w-full ring bg-red-500 ring-red-500 hover:ring-2 hover:bg-red-400">
          <LogOutIcon className="size-4"/>
           Logout
      </Button>

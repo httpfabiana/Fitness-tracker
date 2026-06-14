@@ -150,7 +150,7 @@ const FoodLog = () => {
        </h3>
        <form onSubmit={handleSubmit} className="space-y-4">
        <Input 
-        label="Nome"
+        label="Name"
         value={formData.name}
         onChange={(comida) => setFormData({...formData, name: comida.toString()})}
         placeholder="ex: salad, fish, chicken.."
@@ -158,7 +158,7 @@ const FoodLog = () => {
         />
 
         <Input 
-        label="Calorias"
+        label="Calories"
         type="number"
         value={formData.calories || ''}
         onChange={(comida) => setFormData({...formData, calories: Number(comida)})}
@@ -167,7 +167,7 @@ const FoodLog = () => {
         required
         />
          <Select 
-         label="Tipo de refeição"
+         label="Tipe of meal"
          className="mt-2"
          value={formData.mealType}
          onChange={((comida) => setFormData({...formData, mealType: comida.toString()}))}

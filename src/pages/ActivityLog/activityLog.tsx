@@ -106,7 +106,7 @@ const ActivityLog = () => {
 
       <div className="text-right">
        <p className="text-sm text-slate-500 dark:text-slate-400">
-         Ativo hoje
+         Active today
        </p>
        <p className="text-xl font-bold text-blue-600 dark:text-blue-400">
         {totalMinutes} min
@@ -147,15 +147,15 @@ const ActivityLog = () => {
         </h3>
         <form onSubmit={handleSubmit} className="space-y-4">
          <Input
-          label="Nome da atividade"
+          label="Activity name"
           placeholder="ex: run"
           value={formData.name}
           onChange={(atividade) => setFormData({...formData, name: atividade.toString()})}
           required
          />
-         <div className="flex gap-4">
+         <div className="flex gap-6">
           <Input
-          label="duração"
+          label="duration"
           type="number"
           placeholder="ex: 30min"
           value={formData.duration || ''}
@@ -166,7 +166,7 @@ const ActivityLog = () => {
          />
 
           <Input
-          label="calorias queimadas"
+          label="calories burned"
           type="number"
           placeholder="ex: 200"
           value={formData.calories || ''}

@@ -162,7 +162,7 @@ const Onboarding = () => {
            <input
             type="number"
             className="w-full max-w-xs h-12 rounded-lg border px-2 border-white bg-transparent text-white placeholder:text-slate-400"
-            placeholder="digite seu peso"
+            placeholder="enter your weight"
             min={20}
             max={300}
             value={formdata.weight || ""}
@@ -179,7 +179,7 @@ const Onboarding = () => {
            <input
             type="number"
             className="w-full max-w-xs h-12 rounded-lg border  px-2 border-white bg-transparent text-white placeholder:text-slate-400"
-            placeholder="digite sua altura"
+            placeholder="enter your height"
             min={100}
             max={250}
             value={formdata.height || ""}
@@ -261,7 +261,7 @@ const Onboarding = () => {
            
            <div className="space-y-6">
             <Slider
-             label="Ingestão de calorias diarias"
+             label="Daily calorie Intake"
              min={120}
              max={4000}
              step={50}
@@ -271,7 +271,7 @@ const Onboarding = () => {
              infoText="Total de calorias que voce planeja consumir no dia"
              />
              <Slider
-             label="Queimar de calorias diarias"
+             label="Burn daily Calories"
              min={100}
              max={2000}
              step={50}
