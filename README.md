@@ -23,8 +23,8 @@ O sistema permite registrar refeições, monitorar calorias consumidas e queimad
 ### 🍽️ Alimentação e Atividades
 
 <p align="center">
-  <img src="./photos/food-log.png" width="45%" />
-  <img src="./photos/activity-log.png" width="45%" />
+  <img src="./photos/food.png" width="45%" />
+  <img src="./photos/activity.png" width="45%" />
 </p>
 
 ## 🚀 Tecnologias Utilizadas
