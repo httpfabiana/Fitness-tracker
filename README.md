@@ -1,73 +1,183 @@
-# React + TypeScript + Vite
+# 🏋️ Fitness Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web para acompanhamento de alimentação, atividades físicas e metas de saúde.
 
-Currently, two official plugins are available:
+O sistema permite registrar refeições, monitorar calorias consumidas e queimadas, acompanhar métricas corporais e definir objetivos personalizados de condicionamento físico.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Tecnologias Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Front-end
 
-## Expanding the ESLint configuration
+* React 19
+* TypeScript
+* Vite
+* React Router DOM
+* Axios
+* Tailwind CSS
+* Lucide React
+* React Hot Toast
+* Context API
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Back-end
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* Strapi 5
+* SQLite
+* Users & Permissions Plugin
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📋 Funcionalidades
+
+### 🔐 Autenticação
+
+* Cadastro de usuários
+* Login
+* Logout
+* Persistência de sessão com JWT
+
+### 👤 Onboarding
+
+* Cadastro de idade
+* Peso e altura
+* Definição de objetivos
+
+  * Perder peso
+  * Manter peso
+  * Ganhar massa muscular
+* Cálculo automático de metas diárias
+
+### 🍽️ Registro Alimentar
+
+* Adicionar refeições
+* Categorizar refeições
+
+  * Breakfast
+  * Lunch
+  * Dinner
+  * Snack
+* Controle de calorias consumidas
+* Exclusão de registros
+* Atalhos para registro rápido
+
+### 📊 Dashboard
+
+* Resumo diário
+* Calorias consumidas
+* Calorias queimadas
+* Tempo de atividade
+* Progresso das metas
+* IMC (Índice de Massa Corporal)
+* Métricas corporais
+* Mensagens motivacionais
+
+### 🏃 Atividades Físicas
+
+* Registro de atividades
+* Controle de duração
+* Controle de calorias queimadas
+
+---
+
+## 📂 Estrutura do Projeto
+
+```bash
+fitness-tracker/
+│
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── context/
+│   │   ├── configs/
+│   │   ├── assets/
+│   │   └── types/
+│   │
+│   └── package.json
+│
+├── server/
+│   ├── src/
+│   ├── config/
+│   └── package.json
+│
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚙️ Instalação
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Clonar o projeto
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/seu-usuario/fitness-tracker.git
 ```
+
+### Front-end
+
+```bash
+cd client
+
+npm install
+
+npm run dev
+```
+
+### Back-end
+
+```bash
+cd server
+
+npm install
+
+npm run develop
+```
+
+---
+
+## 🔑 Variáveis de Ambiente
+
+### Front-end (.env)
+
+```env
+VITE_STRAPI_API_URL=http://localhost:1337
+```
+
+### Back-end
+
+Configure as variáveis de ambiente do Strapi conforme a documentação oficial.
+
+---
+
+## 📸 Principais Recursos
+
+* Dashboard com estatísticas diárias
+* Controle de alimentação
+* Controle de atividades físicas
+* Definição de metas personalizadas
+* Cálculo de IMC
+* Autenticação JWT
+* API Headless com Strapi
+
+---
+
+## 🎯 Objetivo do Projeto
+
+Projeto desenvolvido para praticar conceitos de desenvolvimento Full Stack utilizando:
+
+* React
+* TypeScript
+* Context API
+* Consumo de APIs REST
+* Autenticação JWT
+* Strapi CMS
+* Tailwind CSS
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por Fabiana Silva.
+
+LinkedIn: adicione seu perfil aqui
+
+GitHub: adicione seu GitHub aqui
