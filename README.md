@@ -9,22 +9,22 @@ O sistema permite registrar refeições, monitorar calorias consumidas e queimad
 ### 🔐 Autenticação
 
 <p align="center">
-  <img src="./photos/login.png" width="45%" />
-  <img src="./photos/profile.png" width="45%" />
+  <img src="./photos/login.png" height="300" />
+  <img src="./photos/profile.png" height="300" />
 </p>
 
 ### 👤 Onboarding e Dashboard
 
 <p align="center">
-  <img src="./photos/onboarding.png" width="45%" />
-  <img src="./photos/dashboard.png" width="45%" />
+  <img src="./photos/onboarding.png" height="300" />
+  <img src="./photos/dashboard.png"  height="300" />
 </p>
 
 ### 🍽️ Alimentação e Atividades
 
 <p align="center">
-  <img src="./photos/food.png" width="45%" />
-  <img src="./photos/activity.png" width="45%" />
+  <img src="./photos/food.png" height="300" />
+  <img src="./photos/activity.png" height="300" />
 </p>
 
 ## 🚀 Tecnologias Utilizadas
