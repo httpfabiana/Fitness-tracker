@@ -1,4 +1,4 @@
-// User
+
 export type User = {
     id: string;
     email: string;
@@ -14,14 +14,12 @@ export type User = {
     createdAt?: string;
 } | null;
 
-// Credentials
 export type Credentials = {
     username?: string;
     email: string;
     password: string;
 };
 
-// User Form Data
 export interface UserData {
     name: string;
     age: number;
@@ -33,7 +31,6 @@ export interface UserData {
     createdAt: string;
 }
 
-// Profile Form Data
 export interface ProfileFormData {
     age: number;
     weight: number;
@@ -43,14 +40,12 @@ export interface ProfileFormData {
     dailyCalorieBurn: number;
 }
 
-// Food
 export interface FormData {
     name: string;
     calories: number;
     mealType: string;
 }
 
-// Food Entry
 export interface FoodEntry {
     id: number | string;
     name: string;
@@ -61,7 +56,6 @@ export interface FoodEntry {
     documentId?: string;
 }
 
-// Activity Entry
 export interface ActivityEntry {
     id: number;
     name: string;

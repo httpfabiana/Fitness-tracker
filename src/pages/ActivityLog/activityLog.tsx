@@ -1,4 +1,4 @@
-import { Activity, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "../../context/AppContext/useApp";
 import type { ActivityEntry } from "../../types";
 import Card from "../../components/ui/Card";
@@ -7,7 +7,7 @@ import { ActivityIcon, DumbbellIcon, PlusIcon, TimerIcon, Trash2Icon } from "luc
 import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import toast from "react-hot-toast";
-import mockApi from "../../assets/mockApi";
+import api from "../../configs/api";
 
 
 
@@ -50,14 +50,17 @@ const ActivityLog = () => {
        if(!formData.name.trim() || formData.duration <=0) {
         return toast("Insira os dados")
        }
+
        try{
-        const {data} = await mockApi.activityLogs.create({data: formData})
+        const {data} = await api.post('/api/activity-logs',{data: formData})
+
         setAllActivityLogs(prev => [...prev, data])
         setFormData({name: '', duration: 0, calories: 0})
         setShowForm(false)
+
        }catch(error: any) {
         console.log(error)
-        toast.error(error?.message || 'Falha ao enviar atividade')
+        toast.error(error?.response?.data?.error?.message || error?.message)
        }
      }
 
@@ -79,12 +82,12 @@ const ActivityLog = () => {
      
            if(!confirm) return;
      
-           await mockApi.foodLogs.delete(documentId)
+           await api.delete(`/api/activity-logs/${documentId}`)
            setAllActivityLogs(prev => prev.filter((id) => id.documentId !== documentId))
      
           }catch(error: any) {
             console.log(error)
-            toast.error(error?.message || 'Falha ao deletar')
+            toast.error(error?.response?.data?.error?.response || error?.message)
           }
         }
  
@@ -102,7 +105,9 @@ const ActivityLog = () => {
       </div>
 
       <div className="text-right">
-       <p className="text-sm text-slate-500 dark:text-slate-400">Ativo hoje</p>
+       <p className="text-sm text-slate-500 dark:text-slate-400">
+         Ativo hoje
+       </p>
        <p className="text-xl font-bold text-blue-600 dark:text-blue-400">
         {totalMinutes} min
        </p>
@@ -143,7 +148,7 @@ const ActivityLog = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
          <Input
           label="Nome da atividade"
-          placeholder="ex: Correr"
+          placeholder="ex: run"
           value={formData.name}
           onChange={(atividade) => setFormData({...formData, name: atividade.toString()})}
           required

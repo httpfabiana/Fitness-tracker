@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../../context/AppContext/useApp";
-import type { ProfileFormData, UserData } from "../../types";
+import type { ProfileFormData } from "../../types";
 import Card from "../../components/ui/Card";
 import { Calendar, LogOutIcon, Scale, Target, User } from "lucide-react";
 import { goalLabels, goalOptions } from "../../assets/assets";
 import Input from "../../components/ui/Input";
 import Select from "../../components/ui/Select";
-import mockApi from "../../assets/mockApi";
 import toast from "react-hot-toast";
 import Button from "../../components/ui/Button";
+import api from "../../configs/api";
 
 const Profile = () => {
 
@@ -40,17 +40,14 @@ const Profile = () => {
 
    async function handleSave(){
      try{
-      const update: Partial<UserData> = {
-        ...formData,
-        goal: formData.goal as 'lose' | 'maintain' | 'gain'
-      };
-      await mockApi.user.update(user?.id || '', update)
-      await fetchUser(user?.token || '')
-      toast.success('Perfil atualizado com sucesso')
+       await api.put(`/api/users/${user?.id}`, formData)
+
+       await fetchUser(user?.token || '')
+       toast.success('Profile updated successfully')
 
      }catch(error: any) {
        console.log(error)
-       toast.error(error?.message || 'Falha ao autualizar perfil')
+       toast.error(error?.response?.data?.error?.message || error?.message)
      }
      setIsEditing(false)
    }
@@ -128,7 +125,7 @@ const Profile = () => {
         />
         <div className="flex  gap-3 pt-2">
 
-         <button className="flex-1" onClick={()=> {
+         <Button className="flex-1 bg-red-500 hover:bg-red-400" onClick={()=> {
            setIsEditing(false);
            setFormData({
             age: Number(user.age),
@@ -140,7 +137,7 @@ const Profile = () => {
            })
          }}>
            Cancelar
-         </button>
+         </Button>
          <Button onClick={handleSave} className="flex-1">
            Save changes
          </Button>
@@ -156,7 +153,9 @@ const Profile = () => {
          </div>
 
          <div>
-          <p className="text-sm text-slate-500 dark:text-slate-400">Age</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            Age
+          </p>
           <p className="font-semibold text-slate-800 dark:text-white">
            {user.age} years
            </p>
@@ -169,7 +168,9 @@ const Profile = () => {
          </div>
 
          <div>
-          <p className="text-sm text-slate-500 dark:text-slate-400">Weight</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+            Weight
+          </p>
           <p className="font-semibold text-slate-800 dark:text-white">
            {user.weight} kg
            </p>
@@ -183,7 +184,9 @@ const Profile = () => {
          </div>
 
          <div>
-          <p className="text-sm text-slate-500 dark:text-slate-400">Height</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">
+           Height
+          </p>
           <p className="font-semibold text-slate-800 dark:text-white">
            {user.height} cm
            </p>
@@ -213,7 +216,9 @@ const Profile = () => {
      </Card>
      <div className="space-y-4">
       <Card>
-        <h3 className="font-semibold text-slate-800 dark:text-white mb-4">Suas estatísticas</h3>
+        <h3 className="font-semibold text-slate-800 dark:text-white mb-4">
+          your statistics
+        </h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-4 bg-emerald-50 dark:bg-emerald-900/10 rounded-xl">
             <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
@@ -234,7 +239,7 @@ const Profile = () => {
         </div>
         </div>
       </Card>
-       <Button onClick={logout} className="w-full ring bg-red-500 ring-red-500 hover:ring-2">
+       <Button onClick={logout} className="hover:right-2 w-full bg-red-500 hover:bg-red-400">
          <LogOutIcon className="size-4"/>
           Logout
      </Button>

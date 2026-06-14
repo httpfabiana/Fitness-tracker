@@ -7,8 +7,8 @@ import Button from "../../components/ui/Button";
 import { Loader2Icon, PlusIcon, SparkleIcon, Trash2Icon, UtensilsCrossedIcon } from "lucide-react";
 import Input from "../../components/ui/Input";
 import Select from "../../components/ui/Select";
-import mockApi from "../../assets/mockApi";
 import toast from "react-hot-toast";
+import api from "../../configs/api";
 
 const FoodLog = () => {
 
@@ -42,14 +42,21 @@ const FoodLog = () => {
 
    async function handleSubmit(e: React.FormEvent) {
      e.preventDefault()
-     const {data} = await mockApi.foodLogs.create({data: formData})
 
-     setAllFoodLogs(prev => [...prev, data])
-     setFormData({name: '', calories: 0, mealType: ''})
-     setShowForm(false)
+      if(!formData.name.trim() || !formData.calories || formData.calories <= 0
+      || !formData.mealType) {
+        return toast.error("por favor insira os dados")
+      }
 
-     console.log(data);
+      try{
+        const { data } = await api.post("/api/food-logs", {data: formData})
+        setAllFoodLogs(prev => [...prev, data])
+        setFormData({name: '', calories: 0, mealType: ''})
+        setShowForm(false)
 
+      }catch(error: any) {
+        toast.error(error?.response?.data?.error?.message || error?.message)
+      }
    }
 
    const groupeEntries: Record<'breakfast' | 'lunch' | 'dinner' | 'snack', FoodEntry[]> = entries.reduce((comida, entry) => {
@@ -59,18 +66,19 @@ const FoodLog = () => {
      return comida
    }, {} as Record<'breakfast' | 'lunch' | 'dinner' | 'snack', FoodEntry[]>)
 
+
    async function handleDelete(documentId: string){
      try{
       const confirm = window.confirm('Tem certeza que quer deletar?')
 
       if(!confirm) return;
 
-      await mockApi.foodLogs.delete(documentId)
+      await api.delete(`/api/food-logs/${documentId}`)
       setAllFoodLogs(prev => prev.filter((id) => id.documentId !== documentId))
 
      }catch(error: any) {
        console.log(error)
-       toast.error(error?.message || 'Falha ao deletar')
+       toast.error(error?.response?.data?.error?.message || error?.message)
      }
    }
 
@@ -90,8 +98,12 @@ const FoodLog = () => {
       </div>
 
       <div className="text-right">
-       <p className="text-sm text-slate-500 dark:text-slate-400">Today's total</p>
-       <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">{totalCalories} kcal</p>
+       <p className="text-sm text-slate-500 dark:text-slate-400">
+        Today's total
+       </p>
+       <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
+        {totalCalories} kcal
+       </p>
       </div>
      </div>
     </div>
@@ -100,7 +112,9 @@ const FoodLog = () => {
      {!showForm && (
       <div className="space-y-4">
        <Card>
-        <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-3">Quick addition</h3>
+        <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-3">
+         Quick addition
+        </h3>
         <div className="flex flex-wrap gap-2">
           {quickActivitiesFoodLog.map((activity) => (
            <button onClick={() => handleQuickAdd(activity.name)} key={activity.name} className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200
@@ -131,13 +145,15 @@ const FoodLog = () => {
 
      {showForm && (
       <Card className="border-2 border-emerald-200 dark:border-emerald-800">
-       <h3 className="font-semibold text-slate-800 dark:text-white mb-4">New food</h3>
+       <h3 className="font-semibold text-slate-800 dark:text-white mb-4">
+         New food
+       </h3>
        <form onSubmit={handleSubmit} className="space-y-4">
        <Input 
         label="Nome"
         value={formData.name}
         onChange={(comida) => setFormData({...formData, name: comida.toString()})}
-        placeholder="ex: salada, peixe, frango.."
+        placeholder="ex: salad, fish, chicken.."
         required
         />
 

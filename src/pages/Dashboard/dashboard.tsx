@@ -53,7 +53,7 @@ const Dashboard = () => {
       <p className="text-sm font-medium">
         Welcome back
       </p>
-      <h1 className="text-2xl font-bold mt-1">{`Olá!👋${user?.username}`}</h1>
+      <h1 className="text-2xl font-bold mt-1">{`Hi!👋${user?.username}`}</h1>
 
       <div className="mt-6 bg-white/20 backdrop-blur-sm rounded-2xl p-4">
        <div className="flex items-center gap-3">
@@ -71,12 +71,16 @@ const Dashboard = () => {
            <HamburgerIcon className="w-6 h-6 text-orange-500"/>
          </div>
          <div>
-          <p className="text-sm text-slate-500 dark:text-slate-300">Calories consumed</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300">
+            Calories consumed
+           </p>
           <p className="text-2xl text-slate-800 dark:text-white">{totalCalories}</p>
          </div>
         </div>
         <div className="text-right">
-         <p className="text-sm text-slate-500 dark:text-slate-400">Limit</p>
+         <p className="text-sm text-slate-500 dark:text-slate-400">
+          Limit
+         </p>
          <p className="text-2xl text-slate-800 dark:text-white">{DAILY_CALORIE_LIMIT}</p>
         </div>
        </div>
@@ -92,7 +96,9 @@ const Dashboard = () => {
            `${Math.abs(remainingCalories)} kcal over`}
          </span>
         </div>
-        <span className="text-sm text-slate-400">{Math.round((totalCalories / DAILY_CALORIE_LIMIT) * 100)}%</span>
+        <span className="text-sm text-slate-400">
+          {Math.round((totalCalories / DAILY_CALORIE_LIMIT) * 100)}%
+         </span>
        </div>
 
        <div className="border-t border-slate-100 dark:border-slate-800 my-4"></div>
@@ -103,13 +109,21 @@ const Dashboard = () => {
            <FlameIcon className="w-6 h-6 text-orange-500"/>
          </div>
          <div>
-          <p className="text-sm text-slate-500 dark:text-slate-300">Calories burned</p>
-          <p className="text-2xl text-slate-800 dark:text-white">{totalBurn}</p>
+           <p className="text-sm text-slate-500 dark:text-slate-300">
+            Calories burned
+           </p>
+          <p className="text-2xl text-slate-800 dark:text-white">
+            {totalBurn}
+           </p>
          </div>
         </div>
         <div className="text-right">
-         <p className="text-sm text-slate-500 dark:text-slate-400">Goal</p>
-         <p className="text-2xl text-slate-800 dark:text-white">{user?.dailyCalorieBurn || 400}</p>
+         <p className="text-sm text-slate-500 dark:text-slate-400">
+          Goal
+         </p>
+         <p className="text-2xl text-slate-800 dark:text-white">
+          {user?.dailyCalorieBurn || 400}
+         </p>
         </div>
        </div>
        <ProgressBar value={totalBurn} max={user?.dailyCalorieBurn || 400}/>
@@ -121,12 +135,16 @@ const Dashboard = () => {
         <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
          <ActivityIcon className="w-5 h-5 text-blue-500"/>
         </div>
-        <p className="text-sm text-slate-500">Active</p>
+        <p className="text-sm text-slate-500">
+          Active
+         </p>
         </div>
         <p className="text-2xl font-bold text-slate-800 dark:text-white">
           {totalActivityMinutes}
         </p>
-        <p className="text-sm text-slate-400">toda's minutes</p>
+        <p className="text-sm text-slate-400">
+          toda's minutes
+         </p>
        </Card>
 
         <Card>
@@ -134,12 +152,16 @@ const Dashboard = () => {
         <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
          <ZapIcon className="w-5 h-5 text-purple-500"/>
         </div>
-        <p className="text-sm text-slate-500">Training time</p>
+        <p className="text-sm text-slate-500">
+         Training time
+        </p>
         </div>
         <p className="text-2xl font-bold text-slate-800 dark:text-white">
           {totalActivityMinutes}
         </p>
-        <p className="text-sm text-slate-400">minutes recorded</p>
+        <p className="text-sm text-slate-400">
+         minutes recorded
+        </p>
        </Card>
       </div>
 
@@ -213,7 +235,9 @@ const Dashboard = () => {
          {user.height && (
           <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
            <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">IBM</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+              IBM
+            </span>
             {(() => {
               const bmi = (user.weight / Math.pow(user.height / 100, 2)).toFixed(1)
               const getStatus = (b: number) => {

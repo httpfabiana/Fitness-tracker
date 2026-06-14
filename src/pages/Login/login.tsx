@@ -59,7 +59,7 @@ const Login = () => {
               onChange={(e) => setUsername(e.target.value)}
               value={username}
               type="text" 
-              placeholder="Entre com username" 
+              placeholder="Enter username" 
               className="login-input" 
               required
             />
@@ -78,7 +78,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               type="email" 
-              placeholder="Insira seu email" 
+              placeholder="Enter your email" 
               className="login-input" 
               required
             />
@@ -96,7 +96,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               type={showPassword ? "text" : 'password'} 
-              placeholder="Insira sua senha" 
+              placeholder="Enter your password" 
               className="login-input pr-10" 
               required
             />
@@ -109,15 +109,15 @@ const Login = () => {
        </div>
 
        <button type="submit" disabled={isSubmitting} className="login-button">
-        {isSubmitting ? "fazendo login..." : state === "login" ? "login" : "Inscreva-se"}
+        {isSubmitting ? "logging in..." : state === "login" ? "login" : "sign up"}
        </button>
 
        {state === 'login' 
         ? (
          <p className="text-center py-4 text-sm text-gray-500 dark:text-gray-400">
-           Não tem uma conta? 
+           don't have an account? 
            <button onClick={() => setState('sign-up')} className="ml-1 cursor-pointer text-green-600 hover:underline">
-             Inscreva-se
+             sign up
             </button>
          </p>
         )
@@ -125,7 +125,7 @@ const Login = () => {
         <p className="text-center py-4 text-sm text-gray-500 dark:text-gray-400">
           Ja tem uma conta? 
            <button onClick={() => setState('login')} className="ml-1 cursor-pointer text-green-600 hover:underline">
-             Conecte-se
+             Connect
            </button>
         </p>
        )}

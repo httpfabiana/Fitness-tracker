@@ -2,11 +2,10 @@ import { ArrowLeft, ArrowRight, PersonStanding, ScaleIcon, Target, User, } from 
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useAppContext } from "../../context/AppContext/useApp";
-import type { ProfileFormData, UserData } from "../../types";
-import mockApi from "../../assets/mockApi";
+import type { ProfileFormData } from "../../types";
 import { ageRanges, goalOptions } from "../../assets/assets";
 import Slider from "../../components/ui/Slide";
-
+import api from "../../configs/api";
 
 const Onboarding = () => {
 
@@ -33,7 +32,7 @@ const Onboarding = () => {
       Number(formdata.age) < 13 || 
       Number(formdata.age) > 120
       ) {
-       return toast("A idade e obrigatoria")
+       return toast("Age is mandatory")
       }
     }
     if(step < totalSteps) {
@@ -46,11 +45,17 @@ const Onboarding = () => {
         height: formdata.height ? formdata.height : null,
         createdAt: new Date().toISOString()
       }
-      localStorage.setItem("fitnessUser", JSON.stringify(userData))
-       await mockApi.user.update(user?.id || "", userData as unknown as Partial<UserData>)
-       toast.success("Perfil atualizado com sucesso")
-       setOnboardingCompleted(true)
-       await fetchUser(user?.token || "")
+      localStorage.setItem("fitnessUser", JSON.stringify(userData));
+
+       try{
+        await api.put(`/api/users/${user?.id}`, userData)
+         toast.success("Profile updated successfully")
+         setOnboardingCompleted(true)
+         await fetchUser(user?.token || "")
+
+       }catch(error: any) {
+         toast.error(error.message)
+       }
     }
    }
 
@@ -118,7 +123,7 @@ const Onboarding = () => {
            <input
             type="number"
             className="w-full max-w-xs h-12 rounded-lg px-2 border border-white bg-transparent text-white placeholder:text-slate-400"
-            placeholder="digite sua idade"
+            placeholder="enter your age"
             min={13}
             max={120}
             value={formdata.age || ""}
