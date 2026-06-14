@@ -3,11 +3,29 @@
 Aplicação web para acompanhamento de alimentação, atividades físicas e metas de saúde.
 
 O sistema permite registrar refeições, monitorar calorias consumidas e queimadas, acompanhar métricas corporais e definir objetivos personalizados de condicionamento físico.
----
+
 ## 📸 Preview
-![Logo](./src/assets/onboarding.png)
-![Logo](./src/assets/dashboard.png)
----
+
+### 🔐 Autenticação
+
+<p align="center">
+  <img src="![Logo](./src/assets/login.png)" width="45%" />
+  <img src="![Logo](./src/assets/onboarding.png)" width="45%" />
+</p>
+
+### 👤 Onboarding e Dashboard
+
+<p align="center">
+  <img src="./screenshots/onboarding.png" width="45%" />
+  <img src="./screenshots/dashboard.png" width="45%" />
+</p>
+
+### 🍽️ Alimentação e Atividades
+
+<p align="center">
+  <img src="./screenshots/food-log.png" width="45%" />
+  <img src="./screenshots/activity-log.png" width="45%" />
+</p>
 
 ## 🚀 Tecnologias Utilizadas
 
