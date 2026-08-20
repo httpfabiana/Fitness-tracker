@@ -1,5 +1,5 @@
 import { useAppContext } from "../../context/AppContext/useApp";
-import React, { useEffect, useRef, useState } from "react";
+import React, {useRef, useState } from "react";
 import type { FoodEntry, FormData } from "../../types";
 import Card from "../../components/ui/Card";
 import { mealColors, mealIcons, mealTypeOptions, quickActivitiesFoodLog } from "../../assets/assets";
@@ -14,26 +14,21 @@ const FoodLog = () => {
 
   const inputRef = useRef<HTMLInputElement>(null)
   const {allFoodLogs, setAllFoodLogs} = useAppContext()
-  const [entries, setEntries] = useState<FoodEntry[]>([])
   const [showForm, setShowForm] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading] = useState(false)
   const [formData, setFormData] = useState<FormData>({name: "", calories: 0, mealType: '' })
-
-  const totalCalories = entries.reduce((sum, e) => sum + e.calories, 0)
 
   const today = new Date().toISOString().split("T")[0]
 
-   function loadEntries(){
-    const todayEntries = allFoodLogs.filter((food: FoodEntry) => 
-     food.createdAt?.split('T')[0] === today)
-    setEntries(todayEntries)
-   }
+   const entries = allFoodLogs.filter(
+     (food: FoodEntry) =>
+    food.createdAt?.split("T")[0] === today
+   )
 
-   useEffect(() => {
-    (() => {
-      loadEntries()
-    })()
-   },[allFoodLogs])
+   const totalCalories = entries.reduce(
+     (sum, e) => sum + e.calories,
+     0
+   )
 
    function handleQuickAdd(activityName: string) {
     setFormData({...formData, mealType: activityName})
@@ -54,8 +49,12 @@ const FoodLog = () => {
         setFormData({name: '', calories: 0, mealType: ''})
         setShowForm(false)
 
-      }catch(error: any) {
-        toast.error(error?.response?.data?.error?.message || error?.message)
+      }catch(error: unknown) {
+        if(error instanceof Error) {
+          toast.error(error.message)
+        }else {
+          toast.error("Ocorreu um error ao adicionar o alimento")
+        }
       }
    }
 
@@ -76,9 +75,12 @@ const FoodLog = () => {
       await api.delete(`/api/food-logs/${documentId}`)
       setAllFoodLogs(prev => prev.filter((id) => id.documentId !== documentId))
 
-     }catch(error: any) {
-       console.log(error)
-       toast.error(error?.response?.data?.error?.message || error?.message)
+     }catch(error: unknown) {
+      if(error instanceof Error) {
+          toast.error(error.message)
+        }else {
+          toast.error("Ocorreu um error ao deleta o alimento")
+        }
      }
    }
 

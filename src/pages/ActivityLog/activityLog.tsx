@@ -58,9 +58,12 @@ const ActivityLog = () => {
         setFormData({name: '', duration: 0, calories: 0})
         setShowForm(false)
 
-       }catch(error: any) {
-        console.log(error)
-        toast.error(error?.response?.data?.error?.message || error?.message)
+       }catch(error: unknown) {
+        if(error instanceof Error) {
+         toast.error(error.message)
+        }else {
+          toast.error("Ocorreu um error")
+        }
        }
      }
 
@@ -85,9 +88,12 @@ const ActivityLog = () => {
            await api.delete(`/api/activity-logs/${documentId}`)
            setAllActivityLogs(prev => prev.filter((id) => id.documentId !== documentId))
      
-          }catch(error: any) {
-            console.log(error)
-            toast.error(error?.response?.data?.error?.response || error?.message)
+          }catch(error: unknown) {
+           if(error instanceof Error) {
+            toast.error(error.message)
+          }else {
+          toast.error("Ocorreu um error ao deletar")
+        }
           }
         }
  
