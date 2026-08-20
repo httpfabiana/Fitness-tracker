@@ -2,6 +2,7 @@ import { HomeIcon, UtensilsIcon, ActivityIcon, UserIcon } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 
+
 export default function BottomNav() {
 
      const navItems = [
@@ -46,3 +47,4 @@ export default function BottomNav() {
    </nav>
  );
 }
+
