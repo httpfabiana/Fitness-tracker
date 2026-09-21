@@ -4,7 +4,7 @@ import type { FoodEntry, FormData } from "../../types";
 import Card from "../../components/ui/Card";
 import { mealColors, mealIcons, mealTypeOptions, quickActivitiesFoodLog } from "../../assets/assets";
 import Button from "../../components/ui/Button";
-import { Loader2Icon, PlusIcon, SparkleIcon, Trash2Icon, UtensilsCrossedIcon } from "lucide-react";
+import { Loader2Icon, PlusIcon, Trash2Icon, UtensilsCrossedIcon } from "lucide-react";
 import Input from "../../components/ui/Input";
 import Select from "../../components/ui/Select";
 import toast from "react-hot-toast";
@@ -85,7 +85,6 @@ const FoodLog = () => {
    }
 
    
-
   return(
    <div className="page-container">
     <div className="page-header">
@@ -131,11 +130,7 @@ const FoodLog = () => {
         <PlusIcon className="size-5"/>
          Add
        </Button>
-
-        <Button className="w-full" onClick={() => {inputRef.current?.click()}}>
-        <SparkleIcon className="size-5"/>
-          AI
-       </Button>
+       
        <input type="file" accept="image/*" hidden ref={inputRef}/>
        {loading && (
         <div className="fixed inset-0 bg-slate-100/50 dark:bg-slate-900/50 backdrop-blur flex items-center justify-center z-100">
